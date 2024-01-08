@@ -20,6 +20,8 @@ const Game = () => {
   const [computerChoice, setComputerChoice] = useState(null);
   const [resultMessage, setResultMessage] = useState('');
   const [gameOver, setGameOver] = useState(false);
+  const [disable, setDisable] = useState(false);
+  const [displayResults, setDisplayResults] = useState(false);
 
   const determineWinner = (user, computer) => {
     if (user === computer) {
@@ -41,6 +43,8 @@ const Game = () => {
   };
 
   const handleButtonClick = (userChoiceIndex) => {
+    setDisable(true);
+    setDisplayResults(true);
     const userSelected = images[userChoiceIndex].alt;
     setUserChoice(images[userChoiceIndex].src);
 
@@ -57,6 +61,8 @@ const Game = () => {
     setUserChoice(null);
     setComputerChoice(null);
     setResultMessage('');
+    setDisplayResults(false);
+    setDisable(false);
     setGameOver(false);
   };
 
@@ -76,25 +82,35 @@ const Game = () => {
         </div>
       </div>
       <div>
-        <ul className="choice-board-list">
+        <ul className={`choice-board-list ${disable ? 'disable' : ''}`}>
           {images.map((image, index) => (
             <li key={index} className="choice" data-choice={image.alt}>
-              <button type="button" onClick={() => handleButtonClick(index)}>
-                <img src={image.src} alt={image.alt} />
+              <button type="button" className={image.alt} onClick={() => handleButtonClick(index)}>
+                <div>
+                  <img src={image.src} alt={image.alt} />
+                </div>
               </button>
             </li>
           ))}
         </ul>
       </div>
-      <div>
-        {userChoice && <p>Your choice: <img src={userChoice} alt="User choice" /></p>}
-        {computerChoice && <p>Computer's choice: <img src={computerChoice} alt="Computer choice" /></p>}
-        {resultMessage && (
-          <div>
-            <p>{resultMessage}</p>
-            <button onClick={playAgain}>Play Again</button>
-          </div>
-        )}
+      <div className={`result ${displayResults ? 'display-results' : ''}`}>
+        <div>
+          <h2>You picked</h2>
+          {userChoice && <img src={userChoice} alt="User choice" />}
+        </div>
+        <div className="result-btn"> 
+          {resultMessage && (
+            <div>
+              <p>{resultMessage}</p>
+              <button onClick={playAgain}>Play Again</button>
+            </div>
+          )}
+        </div>
+        <div>
+          <h2>The house picked</h2>
+          {computerChoice && <p><img src={computerChoice} alt="Computer choice" /></p>}
+        </div>
       </div>
     </div>
   );
