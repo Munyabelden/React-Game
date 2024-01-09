@@ -4,7 +4,8 @@ import rock from './image/icon-rock.svg';
 import lizard from './image/icon-lizard.svg';
 import paper from './image/icon-paper.svg';
 import scissors from './image/icon-scissors.svg';
-import spock from './image/icon-spock.svg'; 
+import spock from './image/icon-spock.svg';
+import rules from './image/image-rules-bonus.svg';
 
 const images = [
   { src: rock, alt: 'Rock' },
@@ -22,6 +23,7 @@ const Game = () => {
   const [gameOver, setGameOver] = useState(false);
   const [disable, setDisable] = useState(false);
   const [displayResults, setDisplayResults] = useState(false);
+  const [renderRules, setRenderRules] = useState(false);
 
   const determineWinner = (user, computer) => {
     if (user === computer) {
@@ -71,6 +73,14 @@ const Game = () => {
     setGameOver(false);
   };
 
+  const handleRules = () => {
+     setRenderRules(true);
+  }
+
+  const handleExitRules = () => {
+    setRenderRules(false);
+  }
+
   return (
     <div className="game-board">
       <div className="score-board">
@@ -117,7 +127,14 @@ const Game = () => {
           <div className={`results-img ${getChoice(computerChoice)} ${resultMessage === 'You lose!' ? 'winner' : '' }`}>{computerChoice && <img src={computerChoice} alt="Computer choice" />}</div>
         </div>
       </div>
-      <button type="button" className="rules-button">Rules</button>
+      <button type="button" className="rules-button" onClick={() => handleRules()}>Rules</button>
+      <div className={`rules ${renderRules ? 'render' : ''}`}>
+        <div>
+          <h2>Rules</h2>
+          <button className="exit-rules" onClick={() => handleExitRules()}>X</button>
+        </div>
+        <img src={rules} alt="rules" />
+      </div>
     </div>
   );
 };
