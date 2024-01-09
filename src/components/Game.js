@@ -15,7 +15,7 @@ const images = [
 ];
 
 const Game = () => {
-  const [score, setScore] = useState(12);
+  const [score, setScore] = useState(0);
   const [userChoice, setUserChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
   const [resultMessage, setResultMessage] = useState('');
@@ -57,6 +57,11 @@ const Game = () => {
     }, 1000);
   };
 
+  const getChoice = (userChoiceSrc) => {
+    const selectedImage = images.find((image) => image.src === userChoiceSrc)
+    return selectedImage ? selectedImage.alt : null;
+  }
+
   const playAgain = () => {
     setUserChoice(null);
     setComputerChoice(null);
@@ -97,7 +102,7 @@ const Game = () => {
       <div className={`result ${displayResults ? 'display-results' : ''}`}>
         <div>
           <h2>You picked</h2>
-          {userChoice && <img src={userChoice} alt="User choice" />}
+          <div className={`results-img ${getChoice(userChoice)} ${resultMessage === 'You win!' ? 'winner' : '' }`}>{userChoice && <img src={userChoice} alt="User choice" />}</div>
         </div>
         <div className="result-btn"> 
           {resultMessage && (
@@ -109,9 +114,10 @@ const Game = () => {
         </div>
         <div>
           <h2>The house picked</h2>
-          {computerChoice && <p><img src={computerChoice} alt="Computer choice" /></p>}
+          <div className={`results-img ${getChoice(computerChoice)} ${resultMessage === 'You lose!' ? 'winner' : '' }`}>{computerChoice && <img src={computerChoice} alt="Computer choice" />}</div>
         </div>
       </div>
+      <button type="button" className="rules-button">Rules</button>
     </div>
   );
 };
