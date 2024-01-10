@@ -28,7 +28,7 @@
   - [🙏 Acknowledgments ](#-acknowledgments-)
   - [📝 License ](#-license-)
 
-**[Rock, Paper, Scissors game]** is a game where you'll have the opportunity to challenge the computer by choosing one of the elements: rock, paper, scissors, lizard, or Spock. The rules are simple: Rock crushes scissors, Scissors cuts paper, Paper covers rock, Rock crushes lizard, Lizard poisons Spock, Spock smashes scissors, Scissors decapitates lizard, Lizard eats paper, Paper disproves Spock, Spock vaporizes rock. For each round, you'll pick your choice, and the computer will randomly select its option. If you win, you'll earn one point, and if you lose, one point will be deducted. The game will continue with new rounds, keeping track of the score as you compete against the computer.
+**[Rock, Paper, Scissors game]** is a desktop game where you'll have the opportunity to challenge the computer by choosing one of the elements: rock, paper, scissors, lizard, or Spock. The rules are simple: Rock crushes scissors, Scissors cuts paper, Paper covers rock, Rock crushes lizard, Lizard poisons Spock, Spock smashes scissors, Scissors decapitates lizard, Lizard eats paper, Paper disproves Spock, Spock vaporizes rock. For each round, you'll pick your choice, and the computer will randomly select its option. If you win, you'll earn one point, and if you lose, one point will be deducted. The game will continue with new rounds, keeping track of the score as you compete against the computer.
 
 ## 🛠 Built With <a name="built-with"></a>
 
