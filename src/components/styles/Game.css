@@ -21,6 +21,12 @@
   border-radius: 12px;
 }
 
+@media (max-width: 768px) {
+  .score-board {
+    width: 80%;
+  }
+}
+
 .score-board .top-board {
   display: flex;
   flex-direction: column;
